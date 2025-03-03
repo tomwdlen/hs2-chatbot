@@ -46,6 +46,8 @@
             padding: 10px 12px;
             border-radius: 8px;
             position: relative;
+            font-size: 14px;
+            line-height: 1.4;
         }
         
         .bot-message {
@@ -105,6 +107,7 @@
             padding: 8px 16px;
             border-top: 1px solid #e5e7eb;
             background-color: white;
+            display: block; /* Will be toggled by JavaScript */
         }
         
         .suggestion-label {
@@ -117,6 +120,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
+            margin-bottom: 6px;
         }
         
         .suggestion-chip {
@@ -215,6 +219,7 @@
             const chatForm = document.getElementById('chat-form');
             const chatInput = document.getElementById('chat-input');
             const suggestionChips = document.querySelectorAll('.suggestion-chip');
+            const chatSuggestions = document.getElementById('chat-suggestions');
             
             // API endpoint
             const API_URL = '/api/chat';
@@ -243,6 +248,9 @@
             function sendMessage(message) {
                 // Add user message to chat
                 addMessage(message, 'user');
+                
+                // Hide suggestions after first user message
+                chatSuggestions.style.display = 'none';
                 
                 // Show typing indicator
                 const typingIndicator = showTypingIndicator();
